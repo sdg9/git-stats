@@ -8,5 +8,9 @@ g1.initConfig();
 //     console.log(err || data);
 // });
 g1.getIssues({}, function (err, data) {
-    console.log(err || data);
+    // console.log(err || data);
+    g1.createWorkbook(data);
 });
+// g1.createWorkbook({}, function (err, data) {
+//     console.log(err || data);
+// });
