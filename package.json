@@ -5,9 +5,13 @@
   "main": "index.js",
   "dependencies": {
     "abs": "^1.3.6",
+    "lodash": "^4.17.4",
+    "moment": "^2.17.1",
+    "moment-weekday-calc": "^1.1.3",
     "request": "^2.79.0",
     "typpy": "^2.3.6",
-    "ul": "^5.2.9"
+    "ul": "^5.2.9",
+    "xlsx": "^0.8.1"
   },
   "devDependencies": {},
   "scripts": {
