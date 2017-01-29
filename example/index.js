@@ -4,7 +4,7 @@ var jsonfile = require('jsonfile');
 
 var args = process.argv.slice(2);
 
-const file = './data.json'
+// const file = './data.json'
 
 function logHelp() {
   console.log("Usage: node example [options]");
@@ -12,28 +12,42 @@ function logHelp() {
   console.log('  -w --workbook    Build (excel) workbook based on data');
   console.log('  -l --log         Log data');
   console.log('  -c --colors      Use colors');
+  console.log('  -m --merge       Merge JSON');
 }
 
 function getData(per_page = 100) {
   g1.initConfig();
   g1.getIssues({state: 'all', per_page}, function (err, data) {
+    console.log('All done');
 
-    jsonfile.writeFile(file, data, function (err) {
-      console.error(err)
-    })
+    // jsonfile.writeFile(file, data, function (err) {
+    //   console.error(err)
+    // })
   });
 }
 
 function makeSpreadsheet() {
   g1.initConfig();
 
-  jsonfile.readFile(file, function(err, data) {
+  g1.getMergedJson((data) => {
     g1.createWorkbook(data);
-  })
+  });
+
+  // jsonfile.readFile(file, function(err, data) {
+  //   g1.createWorkbook(data);
+  // })
+}
+
+function mergeJson() {
+  g1.initConfig();
+  g1.getMergedJson((data) => {
+    console.log('size: ', data.length);
+  });
 }
 
 function logData() {
-  jsonfile.readFile(file, function(err, data) {
+  // jsonfile.readFile(file, function(err, data) {
+  g1.getMergedJson((data) => {
     console.log('data: ', data);
     console.log(data);
   })
@@ -61,5 +75,7 @@ args.map(arg => {
     makeSpreadsheet();
   } else if (arg === '-l' || arg === '--log') {
     logData();
+  } else if (arg === '-m' || arg === '--merge') {
+    mergeJson()
   }
 })
