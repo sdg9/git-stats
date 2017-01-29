@@ -13,10 +13,14 @@ module.exports = {
   "updatedDate": "2017-01-27",
   // highlights generated report if numbers are low
   "colorHighlight": {
-    "lowPRs": 2,
+    "lowPRs": 1,
     "lowComments": 5,
+    "lowApprovals": 3,
+    "lowChangesRequested": 0,
     "highPRs": 5,
     "highComments": 25,
+    "highChangesRequested": 5,
+    "highApprovals": 10,
     "highDaysOpened": 3,
   },
   "userMapping": {
