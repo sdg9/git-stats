@@ -11,6 +11,7 @@ function logHelp() {
   console.log('  -f --fetch       Fetch server data to local json file');
   console.log('  -w --workbook    Build (excel) workbook based on data');
   console.log('  -l --log         Log data');
+  console.log('  -c --colors      Use colors');
 }
 
 function getData(per_page = 100) {
@@ -25,7 +26,7 @@ function getData(per_page = 100) {
 
 function makeSpreadsheet() {
   g1.initConfig();
-  
+
   jsonfile.readFile(file, function(err, data) {
     g1.createWorkbook(data);
   })
@@ -48,6 +49,8 @@ args.map(arg => {
   if (arg === '--help' || arg === '--?') {
     logHelp();
     process.exit()
+  } else if (arg === '-c' || arg === '--colors') {
+    g1.useColors = true;
   } else if (arg === '-v' || arg === '--verbose') {
     g1.isVerbose = true;
   } else if (arg === '-fs' || arg === '--fetchsmall') {
