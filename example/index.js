@@ -14,7 +14,6 @@ function logHelp() {
 }
 
 function getData(per_page = 100) {
-  var g1 = new GitStats();
   g1.initConfig();
   g1.getIssues({state: 'all', per_page}, function (err, data) {
 
@@ -25,7 +24,8 @@ function getData(per_page = 100) {
 }
 
 function makeSpreadsheet() {
-  var g1 = new GitStats();
+  g1.initConfig();
+  
   jsonfile.readFile(file, function(err, data) {
     g1.createWorkbook(data);
   })
@@ -38,6 +38,7 @@ function logData() {
   })
 }
 
+var g1 = new GitStats();
 if (args.length === 0) {
   console.log('Missing args, please tell me what to do.')
   logHelp();
@@ -47,6 +48,8 @@ args.map(arg => {
   if (arg === '--help' || arg === '--?') {
     logHelp();
     process.exit()
+  } else if (arg === '-v' || arg === '--verbose') {
+    g1.isVerbose = true;
   } else if (arg === '-fs' || arg === '--fetchsmall') {
     getData(5);
   } else if (arg === '-f' || arg === '--fetch') {
