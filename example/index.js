@@ -1,6 +1,7 @@
 // Dependencies
 var GitStats = require("../lib");
 var jsonfile = require('jsonfile');
+const { getWeekdaysOpen } = require('../lib/utils/date');
 
 var args = process.argv.slice(2);
 
@@ -52,6 +53,12 @@ function logData() {
     console.log(data);
   })
 }
+
+function dateDiff() {
+  console.log(getWeekdaysOpen('2016-08-24T18:45:54Z', '2016-08-24T19:05:13Z'));
+}
+// dateDiff();
+// process.exit();
 
 var g1 = new GitStats();
 if (args.length === 0) {
