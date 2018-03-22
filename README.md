@@ -9,6 +9,7 @@ module.exports = {
   "scheme": "basic", // if using basic auth (optional)
   "org": "my org/user",
   "repo": "my repo"
+  "oldestPR": 7000,
   // only process PRs updated after a specified date
   "updatedDate": "2017-01-27",
   // highlights generated report if numbers are low
@@ -30,3 +31,8 @@ module.exports = {
   }
 };
 ```
+
+Run `yarn install`
+Edit oldestPR to how far back you wish to go
+Run `node example/index -f -l`
+Run `node example/index.js -w`
